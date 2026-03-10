@@ -281,7 +281,7 @@ const upload = multer({ storage });
           if (user) {
             let redirectUrl = "";
             if (role === "admin") {
-            redirectUrl = "https://restaurant-cms-0tsu.onrender.com/dashboard.html";
+            redirectUrl = "https://restaurant-cms-0tsu.onrender.com/admin-dashboard.html";
             } else if (role === "staff") {
             redirectUrl = "https://restaurant-cms-0tsu.onrender.com/staff-dashboard.html";
             } else if (role === "user") {
