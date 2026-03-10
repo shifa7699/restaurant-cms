@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
+import API_BASE_URL from "./config";
 
 function Menu() {
   const [menuItems, setMenuItems] = useState([]);
@@ -28,7 +29,7 @@ function Menu() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/menu")
+    fetch(`${API_BASE_URL}/api/menu`)
       .then((response) => response.json())
       .then((data) => {
         console.log("Fetched menu data:", data);
@@ -65,7 +66,7 @@ function Menu() {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8080/login', {
+      const response = await fetch(`${API_BASE_URL}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -180,7 +181,7 @@ function Menu() {
                 {selectedCategoryItems.map((item) => (
                   <div key={item._id} className="menu-card">
                     <img
-                      src={`http://localhost:8080${item.image}`}
+                      src={`${API_BASE_URL}${item.image}`}
                       alt={item.name}
                       className="menu-img"
                     />

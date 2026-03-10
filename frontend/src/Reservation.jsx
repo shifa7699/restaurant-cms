@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
+import API_BASE_URL from "./config";
 
 function Reservation() {
   const [formData, setFormData] = useState({
@@ -46,7 +47,7 @@ function Reservation() {
       email: formData.email.toLowerCase()
     };
     try {
-      const response = await fetch("http://localhost:8080/submit-reservation", {
+      const response = await fetch(`${API_BASE_URL}/submit-reservation`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -96,7 +97,7 @@ function Reservation() {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8080/login', {
+      const response = await fetch(`${API_BASE_URL}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',

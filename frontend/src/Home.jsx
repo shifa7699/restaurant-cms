@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
+import API_BASE_URL from "./config";
 
 function Home() {
   const [menuItems, setMenuItems] = useState([]);
@@ -40,7 +41,7 @@ function Home() {
   ];
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/menu")
+    fetch(`${API_BASE_URL}/api/menu`)
       .then((response) => response.json())
       .then((data) => {
         setMenuItems(data.slice(0, 6));
@@ -98,7 +99,7 @@ function Home() {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8080/login', {
+      const response = await fetch(`${API_BASE_URL}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
