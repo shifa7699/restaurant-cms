@@ -281,11 +281,11 @@ const upload = multer({ storage });
           if (user) {
             let redirectUrl = "";
             if (role === "admin") {
-              redirectUrl = "/admin-dashboard.html";
+            redirectUrl = "https://restaurant-cms-0tsu.onrender.com/dashboard.html";
             } else if (role === "staff") {
-              redirectUrl = "/staff-dashboard.html";
+            redirectUrl = "https://restaurant-cms-0tsu.onrender.com/staff-dashboard.html";
             } else if (role === "user") {
-              redirectUrl = "/user-dashboard.html?email=" + encodeURIComponent(userEmail);
+            redirectUrl = "/user-dashboard.html?email=" + encodeURIComponent(userEmail);
             }
             res.writeHead(200, {
               "Content-Type": "application/json",
