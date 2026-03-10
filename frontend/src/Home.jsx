@@ -149,7 +149,7 @@ function Home() {
 
       <section id="home" className="hero">
         <video className="hero-video" autoPlay muted loop playsInline>
-          <source src="/mixkit-a-bunch-of-strawberries-falling-through-water-15973-hd-ready.mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/df2kljcvp/video/upload/v1773156579/mixkit-a-bunch-of-strawberries-falling-through-water-15973-hd-ready_p0ps0r.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="overlay"></div>
