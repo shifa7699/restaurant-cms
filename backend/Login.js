@@ -23,15 +23,17 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Create server
-const server = http.createServer(async (req, res) => {
+// OPTIONS REQUESTS (for CORS preflight)
+ const server = http.createServer(async (req, res) => {
 
-  // OPTIONS REQUESTS (for CORS preflight)
+  // Global CORS headers for ALL requests
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  // ======= OPTIONS REQUESTS (for CORS preflight) =======
   if (req.method === "OPTIONS") {
-    res.writeHead(200, {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type"
-    });
+    res.writeHead(200);
     res.end();
     return;
   }
