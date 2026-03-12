@@ -16,9 +16,21 @@ const reservationCollection = "reservations";
 const usersCollection = "users";
 
 // Multer setup for image uploads
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "uploads/"),
-  filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname)),
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "restaurant-cms",
+    allowed_formats: ["jpg", "jpeg", "png", "webp"],
+  },
 });
 const upload = multer({ storage });
 
@@ -379,7 +391,7 @@ const upload = multer({ storage });
         if (err) return res.end("Upload error: " + err.message);
 
         const { name, price, category, foodType } = req.body;
-        const image = "/uploads/" + req.file.filename;
+        const image = req.file.path;
 
         const menuItem = { name, price, image, category };
         // Add foodType if provided
@@ -419,7 +431,7 @@ const upload = multer({ storage });
           if (category) updateData.category = category;
           if (foodType) updateData.foodType = foodType;
           if (req.file) {
-            updateData.image = "/uploads/" + req.file.filename;
+            updateData.image = req.file.path;
           }
 
           const client = new MongoClient(mongoUrl);
