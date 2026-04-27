@@ -181,7 +181,7 @@ function Menu() {
                 {selectedCategoryItems.map((item) => (
                   <div key={item._id} className="menu-card">
                     <img
-                      src={`${API_BASE_URL}${item.image}`}
+                      src={item.image.startsWith('http') ? item.image : `${API_BASE_URL}${item.image}`}
                       alt={item.name}
                       className="menu-img"
                     />
